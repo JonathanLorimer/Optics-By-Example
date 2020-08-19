@@ -1,0 +1,32 @@
+name: "OpticsByExample"
+version: 0.1.0
+synopsis: "Exercises for Chris Penner's Optics By Example"
+description: "See READMEE at <https://github.com/jonathanlorimer/optics-by-example#readme>"
+maintainer: Jonathan Lorimer
+github: jonathanlorimer/optics-by-example
+category: Learning
+
+ghc-options: -Wall
+
+dependencies:
+  - base >= 4.9 && < 5
+  - aeson
+  - containers
+  - lens
+  - lens-aeson
+  - mtl
+  - text
+
+default-extensions:
+  - TemplateHaskell
+  - FlexibleInstances
+  - FlexibleContexts
+  - RankNTypes
+  - ScopedTypeVariables
+  - TypeApplications
+  - TypeFamilies
+
+
+library:
+  source-dirs: src
+  other-modules: []

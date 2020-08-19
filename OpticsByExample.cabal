@@ -1,0 +1,38 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 405ec2d082ba7994517e4bad152fd5b0adba9ea627a796ee5316d2d7433f3d68
+
+name:           OpticsByExample
+version:        0.1.0
+synopsis:       Exercises for Chris Penner's Optics By Example
+description:    See READMEE at <https://github.com/jonathanlorimer/optics-by-example#readme>
+category:       Learning
+homepage:       https://github.com/jonathanlorimer/optics-by-example#readme
+bug-reports:    https://github.com/jonathanlorimer/optics-by-example/issues
+maintainer:     Jonathan Lorimer
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/jonathanlorimer/optics-by-example
+
+library
+  exposed-modules:
+      CH2_Optics
+  hs-source-dirs:
+      src
+  default-extensions: TemplateHaskell FlexibleInstances FlexibleContexts RankNTypes ScopedTypeVariables TypeApplications TypeFamilies
+  ghc-options: -Wall
+  build-depends:
+      aeson
+    , base >=4.9 && <5
+    , containers
+    , lens
+    , lens-aeson
+    , mtl
+    , text
+  default-language: Haskell2010
