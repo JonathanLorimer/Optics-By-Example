@@ -1,30 +1,38 @@
-src/CH2_Optics.hs:3:1: warning: [-Wunused-imports]
+src/CH2_Optics.hs:3:1-19: warning: [-Wunused-imports]
     The import of ‘Control.Lens’ is redundant
   |
 3 | import Control.Lens
   | ^^^^^^^^^^^^^^^^^^^
-src/CH2_Optics.hs:4:1: warning: [-Wunused-imports]
+src/CH2_Optics.hs:4:1-26: warning: [-Wunused-imports]
     The import of ‘Control.Applicative’ is redundant
   |
 4 | import Control.Applicative
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
-src/CH2_Optics.hs:5:1: warning: [-Wunused-imports]
+src/CH2_Optics.hs:5:1-16: warning: [-Wunused-imports]
     The import of ‘Data.Char’ is redundant
   |
 5 | import Data.Char
   | ^^^^^^^^^^^^^^^^
-src/CH2_Optics.hs:6:1: warning: [-Wunused-imports]
+src/CH2_Optics.hs:6:1-30: warning: [-Wunused-imports]
     The qualified import of ‘Data.Map’ is redundant
   |
 6 | import qualified Data.Map as M
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-src/CH2_Optics.hs:7:1: warning: [-Wunused-imports]
+src/CH2_Optics.hs:7:1-30: warning: [-Wunused-imports]
     The qualified import of ‘Data.Set’ is redundant
   |
 7 | import qualified Data.Set as S
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-src/CH2_Optics.hs:8:1: warning: [-Wunused-imports]
+src/CH2_Optics.hs:8:1-31: warning: [-Wunused-imports]
     The qualified import of ‘Data.Text’ is redundant
   |
 8 | import qualified Data.Text as T
   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+/Users/jonathanlorimer/OSS/optics-by-example/src/CH2_Optics.hs:11:1
+$> view _1 ('1','2')
+'1'
+ 
+/Users/jonathanlorimer/OSS/optics-by-example/src/CH2_Optics.hs:13:1
+$> view _2 ('1','2')
+'2'

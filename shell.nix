@@ -2,7 +2,7 @@ with import ./default.nix {};
 
 hsPkgs.shellFor {
     packages = myHsPkgs: [
-			myHsPkgs.OpticsByExample
+      myHsPkgs.OpticsByExample
     ];
     withHoogle = true;
     buildInputs = with pkgs; [
@@ -10,6 +10,6 @@ hsPkgs.shellFor {
       cabal2nix # Utility to download Haskell packages into Nix format
       hsPkgs.ghcid # haskell repl with hot reloading
       hsPkgs.hpack # generate cabal file from package.yaml
-		];
+    ];
 }
 
