@@ -28,9 +28,9 @@ field2 = lens getLeft setLeft
     setLeft (Left _) v = Left $ reverse v
     setLeft (Right _) _ = Left ""
 
--- $> set field2 (view field2 (Left "hello" :: Either String Int)) (Right 2)
+---- $> set field2 (view field2 (Left "hello" :: Either String Int)) (Right 2)
 --  Left ""
--- $> set field2 (view field2 (Left "hello" :: Either String Int)) (Left "2")
+---- $> set field2 (view field2 (Left "hello" :: Either String Int)) (Left "2")
 --  Left "olleh"
 
 -- | 3. There’s a different way we could have written the msg lens such that it would PASS the set-get
@@ -44,25 +44,25 @@ field2' = lens getLeft setLeft
     setLeft (Left _) v = Left v
     setLeft (Right _) v = Left v
 
--- $> view field2' $ set field2' "hello" (Right 2)
+---- $> view field2' $ set field2' "hello" (Right 2)
 -- passes: "hello"
 
--- $> view field2' $ set field2' "hello" (Left "2")
+---- $> view field2' $ set field2' "hello" (Left "2")
 -- passes: "hello"
 
--- $> set field2' "goodbye" $ set field2' "hello" (Left "2")
+---- $> set field2' "goodbye" $ set field2' "hello" (Left "2")
 -- passes: Left "goodbye"
 
--- $> set field2' "goodbye" $ set field2' "hello" (Right 2)
+---- $> set field2' "goodbye" $ set field2' "hello" (Right 2)
 -- passes: Left "goodbye"
 
--- $> set field2' (view field2' (Left "hello")) (Right 2)
+---- $> set field2' (view field2' (Left "hello")) (Right 2)
 -- passes: Left "hello"
 
--- $> set field2' (view field2' (Right 2)) (Right 2)
+---- $> set field2' (view field2' (Right 2)) (Right 2)
 -- fails: Left ""
 
--- $> set field2' (view field2' (Right 2)) (Left "Hello")
+---- $> set field2' (view field2' (Right 2)) (Left "Hello")
 -- fails: Left ""
 
 
