@@ -1,1 +1,5 @@
-All good (2 modules, at 16:37:19)
+src/CH5_Operators.hs:7:1: warning: [-Wunused-imports]
+    The import of ‘Control.Lens’ is redundant
+  |
+7 | import Control.Lens
+  | ^^^^^^^^^^^^^^^^^^^
