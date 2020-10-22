@@ -1,10 +1,10 @@
 {-# LANGUAGE NamedFieldPuns #-}
 {-# LANGUAGE TemplateHaskell #-}
+
 module CH3_Lenses where
 
 import Control.Lens
 import Data.Char (isSpace)
-
 
 -- | Law Exercises
 -- 1. set-get -> view lens $ set lens a structure === a
@@ -15,10 +15,11 @@ import Data.Char (isSpace)
 
 -- | 1. Implement a lens which breaks the second and/or third law. That’s get-set and set-set
 -- respectively.
-
-data Product = Product { _field1 :: Int
-                       , _field2 :: Either String Int
-                       }
+data Product
+  = Product
+      { _field1 :: Int,
+        _field2 :: Either String Int
+      }
 
 field2 :: Lens' (Either String Int) String
 field2 = lens getLeft setLeft
@@ -28,14 +29,13 @@ field2 = lens getLeft setLeft
     setLeft (Left _) v = Left $ reverse v
     setLeft (Right _) _ = Left ""
 
----- $> set field2 (view field2 (Left "hello" :: Either String Int)) (Right 2)
+-- $> set field2 (view field2 (Left "hello" :: Either String Int)) (Right 2)
 --  Left ""
 ---- $> set field2 (view field2 (Left "hello" :: Either String Int)) (Left "2")
 --  Left "olleh"
 
 -- | 3. There’s a different way we could have written the msg lens such that it would PASS the set-get
 -- law and the set-set law, but fail get-set. Implement this other version.
-
 field2' :: Lens' (Either String Int) String
 field2' = lens getLeft setLeft
   where
@@ -65,15 +65,15 @@ field2' = lens getLeft setLeft
 ---- $> set field2' (view field2' (Right 2)) (Left "Hello")
 -- fails: Left ""
 
-
 -- | Virtual Fields Exercises
 -- 1. abstract username with a lens
+data User
+  = User
+      { _firstName :: String,
+        _lastName :: String,
+        _email :: String
+      }
 
-data User =
-  User { _firstName :: String
-       , _lastName :: String
-       , _email :: String
-       }
 makeLenses ''User
 
 username :: Lens' User String
@@ -92,13 +92,13 @@ fullname = lens getFullname setFullname
       let (firstname, lastname) = (break isSpace fname)
        in set firstName firstname $ set lastName lastname user
 
-
 -- | Data Validation
-
-data ProducePrices =
-  ProducePrices { _limePrice :: Float
-                , _lemonPrice :: Float
-                } deriving Show
+data ProducePrices
+  = ProducePrices
+      { _limePrice :: Float,
+        _lemonPrice :: Float
+      }
+  deriving (Show)
 
 -- 1. add min value to setters && 2. clamp price to within 50 cents of other produce
 
@@ -108,21 +108,17 @@ clamp minVal maxVal a = min maxVal . max minVal $ a
 limePrice :: Lens' ProducePrices Float
 limePrice = lens getLimePrice setLimePrice
   where
-    getLimePrice (ProducePrices{ _limePrice }) = _limePrice
+    getLimePrice (ProducePrices {_limePrice}) = _limePrice
     setLimePrice produce newPrice =
-        let
-          correctedLime =  max 0.0 newPrice
+      let correctedLime = max 0.0 newPrice
           correctedLemon = clamp (correctedLime - 0.5) (correctedLime + 0.5) correctedLime
-         in produce { _limePrice = correctedLime, _lemonPrice = correctedLemon }
+       in produce {_limePrice = correctedLime, _lemonPrice = correctedLemon}
 
 lemonPrice :: Lens' ProducePrices Float
 lemonPrice = lens getLemonPrice setLemonPrice
   where
-    getLemonPrice (ProducePrices{ _lemonPrice }) = _lemonPrice
+    getLemonPrice (ProducePrices {_lemonPrice}) = _lemonPrice
     setLemonPrice produce newPrice =
-        let
-          correctedLemon =  max 0.0 newPrice
+      let correctedLemon = max 0.0 newPrice
           correctedLime = clamp (correctedLemon - 0.5) (correctedLemon + 0.5) correctedLemon
-         in produce { _limePrice = correctedLime, _lemonPrice = correctedLemon }
-
-
+       in produce {_limePrice = correctedLime, _lemonPrice = correctedLemon}

@@ -1,45 +1,49 @@
 {-# LANGUAGE NamedFieldPuns #-}
 {-# LANGUAGE TemplateHaskell #-}
+
 module CH4_Polymorphic_Optics where
 
 import Control.Lens
+
 -- import Control.Applicative
 -- import Data.Char
 -- import qualified Data.Map as M
 -- import qualified Data.Set as S
 -- import qualified Data.Text as T
 
-
 -- Exercises - Polymorphic Lenses
 
 -- 1. Write the type signature of the polymorphic lens which would allow changing a Vorpal x to
 -- a Vorpal y.
-newtype Vorpal a = Vorpal { unVorpal :: a }
+newtype Vorpal a = Vorpal {unVorpal :: a}
+
 type VorpalLens x y = Lens (Vorpal x) (Vorpal y) x y
 
 -- 2. Find one possible way to write a polymorphic lens which changes the type of the best and
 -- worst fields in the Preferences type above. You’re allowed to change the type of the lenses or
 -- alter the type itself!
-data Preferences a =
-  Preferences { _best :: a
-              , _worst :: a
-              }
-              deriving (Show)
+data Preferences a
+  = Preferences
+      { _best :: a,
+        _worst :: a
+      }
+  deriving (Show)
 
 preferenceLens :: Lens (Preferences a) (Preferences b) (a, a) (b, b)
 preferenceLens = lens getter setter
   where
-    getter :: Preferences a -> (a,a)
-    getter Preferences{_best, _worst} = (_best, _worst)
+    getter :: Preferences a -> (a, a)
+    getter Preferences {_best, _worst} = (_best, _worst)
     setter :: Preferences a -> (b, b) -> Preferences b
     setter _ (b1, b2) = Preferences b1 b2
 
 -- 3. We can change type of more complex types too. What is the type of a lens which could change
 -- the type variable here:
-data Result e =
-  Result { _lineNumber :: Int
-         , _result :: Either e String
-         }
+data Result e
+  = Result
+      { _lineNumber :: Int,
+        _result :: Either e String
+      }
 
 type ResultLens e e' = Lens (Result e) (Result e') (Either e String) (Either e' String)
 
@@ -50,8 +54,8 @@ type ResultLens e e' = Lens (Result e) (Result e') (Either e String) (Either e' 
 
 -- 5. BONUS Come up with some sort of lens to change from a Predicate a to a Predicate b?
 
-data Predicate a =
-  Predicate (a -> Bool)
+data Predicate a
+  = Predicate (a -> Bool)
 
 predLens :: Lens (Predicate a) (Predicate b) (a -> Bool) (b -> Bool)
 predLens = lens getter setter
@@ -60,9 +64,6 @@ predLens = lens getter setter
     getter (Predicate f) = f
     setter :: Predicate a -> (b -> Bool) -> Predicate b
     setter _ f = Predicate f
-
-
-
 -- Exercises Lens Composition
 
 -- 1.
@@ -85,8 +86,3 @@ predLens = lens getter setter
 
 -- 4.
 --
-
-
-
-
-
