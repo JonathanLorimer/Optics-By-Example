@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4fbd9eafe9368959ddb8a64725e1a7f9fe6a32dd400a7b2fd86f21ce162b1dee
+-- hash: 5d1019270b07505e34b9960c90f0b1ab248a0474abd99d068e19b76daa868db4
 
 name:           OpticsByExample
 version:        0.1.0
@@ -25,6 +25,7 @@ library
       CH3_Lenses
       CH4_Polymorphic_Optics
       CH5_Operators
+      CH6_Folds
   hs-source-dirs:
       src
   default-extensions: TemplateHaskell FlexibleInstances FlexibleContexts RankNTypes ScopedTypeVariables TypeApplications TypeFamilies

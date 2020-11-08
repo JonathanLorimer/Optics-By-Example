@@ -1,1 +1,10 @@
-All good (3 modules, at 09:48:18)
+src/CH6_Folds.hs:6:1: warning: [-Wunused-imports]
+    The import of ‘Control.Lens’ is redundant
+  |
+6 | import Control.Lens
+  | ^^^^^^^^^^^^^^^^^^^
+src/CH6_Folds.hs:9:1: warning: [-Wunused-imports]
+    The import of ‘Data.Char’ is redundant
+  |
+9 | import Data.Char
+  | ^^^^^^^^^^^^^^^^

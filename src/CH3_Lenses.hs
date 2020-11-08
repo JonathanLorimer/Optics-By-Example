@@ -29,7 +29,7 @@ field2 = lens getLeft setLeft
     setLeft (Left _) v = Left $ reverse v
     setLeft (Right _) _ = Left ""
 
--- $> set field2 (view field2 (Left "hello" :: Either String Int)) (Right 2)
+---- $> set field2 (view field2 (Left "hello" :: Either String Int)) (Right 2)
 --  Left ""
 ---- $> set field2 (view field2 (Left "hello" :: Either String Int)) (Left "2")
 --  Left "olleh"
