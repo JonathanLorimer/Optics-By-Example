@@ -107,9 +107,9 @@ c2 = (toListOf :: Fold (M.Map String String) Char -> M.Map String String -> [Cha
 -- ["Light","Happy"]
 
 -- >>> [("Light", "Dark"), ("Happy", "Sad")] ^.. _
--- $> [("Light", "Dark"), ("Happy", "Sad")] ^.. (folded . _2 . folded)
+---- $> [("Light", "Dark"), ("Happy", "Sad")] ^.. (folded . _2 . folded)
 -- "DarkSad"
 
 -- >>> ("Bond", "James", "Bond") ^.. _
--- $> ("Bond", "James", "Bond") ^.. each
+---- $> ("Bond", "James", "Bond") ^.. each
 -- ["Bond","James","Bond"]
